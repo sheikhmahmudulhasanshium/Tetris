@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Orbitron  } from "next/font/google";
 import "./globals.css";
 
-const font = Poppins({
+const font = Orbitron({
   subsets: ["latin"],
   weight: "500"
 });
 
 export const metadata: Metadata = {
-  title: "Movie Marathon",
+  title: "Tetris",
   description: "next app",
 };
 
@@ -19,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-
+      <head>
+      <link rel="icon" href="/favicon.ico" className=""/>
+      </head>
       <body className={font.className}>
           {children}
       </body>

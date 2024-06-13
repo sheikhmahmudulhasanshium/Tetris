@@ -6,7 +6,7 @@ const Home = () => {
     
 
     return (
-        <main className="flex flex-col justify-between items-center">
+        <main className="flex flex-col justify-between items-center min-h-max">
             <Header />
             <Body/>
             <Footer />

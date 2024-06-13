@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface ScoreBoardProps {
     score: number;
     level: number;
@@ -6,18 +8,18 @@ interface ScoreBoardProps {
 
 const ScoreBoard: React.FC<ScoreBoardProps> = ({ score, level, lines }) => {
     return (
-        <div className="flex justify-evenly space-x-4 text-xl">
-            <div className="flex gap-2">
-                <p className="font-bold">Score: </p>
-                <p>{score}</p>
+        <div className="flex  items-center bg-gray-200 p-4 rounded shadow-md justify-center space-x-2">
+            <div className="">
+                <h2 className="text-lg font-bold">Score</h2>
+                <p className='text-center'>{score}</p>
             </div>
-            <div className="flex gap-2">
-                <p className="font-bold">Level: </p>
-                <p>{level}</p>
+            <div className="">
+                <h2 className="text-lg font-bold">Level</h2>
+                <p className='text-center'>{level}</p>
             </div>
-            <div className="flex gap-2">
-                <p className="font-bold">Lines: </p>
-                <p>{lines}</p>
+            <div>
+                <h2 className="text-lg font-bold">Lines</h2>
+                <p className='text-center'>{lines}</p>
             </div>
         </div>
     );
