@@ -1,43 +1,77 @@
 import React from 'react';
 
-interface UpcomingProps {
-    nextShape: number[];
-    columns: number;
+interface TetrisShape {
+    shape: number[][];
+    color: string;
 }
 
-const Upcoming: React.FC<UpcomingProps> = ({ nextShape, columns }) => {
-    const rows = 4;
-    const previewColumns = 4;
-    const previewGrid = Array(rows * previewColumns).fill(false);
+interface UpcomingProps {
+    upcomingShape: TetrisShape | null;
+}
 
-    const previewShape = nextShape.map(index => {
-        const x = index % columns;
-        const y = Math.floor(index / columns);
-        // Shifting shape to center of 4x4 preview
-        return (y + 1) * previewColumns + (x - 4);
-    });
+const Upcoming: React.FC<UpcomingProps> = ({ upcomingShape }) => {
+    const columns = 6;
+    const rows = 6;
 
-    const gridItems = [];
-    for (let i = 0; i < rows * previewColumns; i++) {
-        const isShape = previewShape.includes(i);
-        gridItems.push(
-            <div
-                key={i}
-                className={`col-span-1 border ${isShape ? 'bg-slate-500' : 'border-gray-500'}`}
-                style={{ height: '20px', width: '20px' }}
-            >
-                &nbsp;
-            </div>
-        );
-    }
+    const renderShape = () => {
+        if (!upcomingShape) return null;
+
+        const shape = upcomingShape.shape;
+        const shapeRows = shape.length;
+        const shapeCols = shape[0].length;
+
+        // Calculate starting index to center the shape
+        const startCol = Math.floor((columns - shapeCols) / 2);
+        const startRow = Math.floor((rows - shapeRows) / 2);
+
+        const shapeGridItems: JSX.Element[] = [];
+
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < columns; j++) {
+                // Check if the current cell is part of the shape
+                if (
+                    i >= startRow &&
+                    i < startRow + shapeRows &&
+                    j >= startCol &&
+                    j < startCol + shapeCols &&
+                    shape[i - startRow][j - startCol] === 1
+                ) {
+                    shapeGridItems.push(
+                        <div
+                            key={`${i}-${j}`}
+                            className={`col-span-1 border border-black ${upcomingShape.color}`}
+                            style={{ height: '20px', width: '20px' }}
+                        >
+                            &nbsp;
+                        </div>
+                    );
+                } else {
+                    shapeGridItems.push(
+                        <div
+                            key={`${i}-${j}`}
+                            className="col-span-1 bg-cyan-100 border border-black"
+                            style={{ height: '20px', width: '20px' }}
+                        >
+                            &nbsp;
+                        </div>
+                    );
+                }
+            }
+        }
+
+        return shapeGridItems;
+    };
 
     return (
-        <div className="flex justify-center items-center my-4">
-            <div className="grid grid-cols-4 gap-1 justify-center items-center">
-                {gridItems}
+        <div className="flex flex-col justify-center items-center">
+            <p>Upcoming</p>
+            <div className="bg-green justify-center items-center border border-red-950 mt-2">
+                <div className="grid grid-cols-6">
+                    {renderShape()}
+                </div>
             </div>
         </div>
     );
-}
+};
 
 export default Upcoming;

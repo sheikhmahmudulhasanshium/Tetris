@@ -1,15 +1,15 @@
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Body from "./components/Body";
+import Controls from "./components/Controls";
 
 const Home = () => {
     
 
     return (
-        <main className="flex flex-col justify-between items-center min-h-max">
+        <main className="flex flex-col justify-center items-center ">
             <Header />
             <Body/>
-            <Footer />
+            <Controls/>
         </main>
     );
 };

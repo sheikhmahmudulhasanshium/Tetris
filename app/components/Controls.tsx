@@ -12,7 +12,7 @@ const Controls = () => {
     };
 
     return (
-        <div className="fixed top-0 right-0 m-4 flex flex-col items-end">
+        <div className="fixed bottom-4 right-0 m-4 flex flex-col items-end">
             {showControls ? (
                 <div className="bg-white shadow-md p-4 rounded-lg flex flex-col items-end">
                     <button className="text-xl" onClick={toggleControls}>
@@ -20,6 +20,9 @@ const Controls = () => {
                     </button>
                     <div className="flex flex-col items-start mt-2">
                         <div className="flex items-center mb-2">
+                            <p className='text-center justify-center'>Controls</p>
+                        </div>
+                    <div className="flex items-center mb-2">
                             <FaArrowAltCircleUp className="text-2xl mr-2" />
                             <span>Rotate</span>
                         </div>
